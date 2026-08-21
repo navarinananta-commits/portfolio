@@ -172,9 +172,10 @@ body {
   font-weight: 800;
   line-height: 1.0;
   letter-spacing: -.035em;
-  color: var(--text);
+  color: #fff;
   text-wrap: balance;
   margin-bottom: .3rem;
+  text-shadow: 0 0 30px rgba(255,255,255,.2), 0 0 80px rgba(0,240,255,.12);
 }
 
 .hero-name-en {
@@ -301,8 +302,9 @@ body {
 .sec-title {
   font-family: 'Syne', sans-serif;
   font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800;
-  color: var(--text); letter-spacing: -.025em;
+  color: #fff; letter-spacing: -.025em;
   margin-bottom: 3rem; text-wrap: balance;
+  text-shadow: 0 0 24px rgba(255,255,255,.18), 0 0 60px rgba(255,255,255,.06);
 }
 
 /* ─── SKILLS ─── */
@@ -408,8 +410,9 @@ body {
 .proj-name {
   font-family: 'Syne', sans-serif;
   font-size: clamp(1.3rem, 2.8vw, 1.65rem); font-weight: 800;
-  color: var(--text); letter-spacing: -.02em;
+  color: #fff; letter-spacing: -.02em;
   line-height: 1.15; margin-bottom: .4rem;
+  text-shadow: 0 0 18px rgba(255,255,255,.25), 0 0 40px rgba(255,255,255,.08);
 }
 
 .proj-sub { font-size: .9rem; color: var(--text2); line-height: 1.6; margin-bottom: 1.2rem; }
@@ -426,31 +429,34 @@ body {
 
 /* stats bar */
 .proj-stats {
-  display: flex; flex-wrap: wrap;
+  display: flex;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
 }
 
 .pstat {
-  flex: 1 1 90px;
-  padding: 1rem 1.25rem;
+  flex: 0 0 auto;
+  padding: .7rem 1.4rem;
   border-right: 1px solid var(--border);
   text-align: center;
+  white-space: nowrap;
 }
 .pstat:last-child { border-right: none; }
 
 .pstat-val {
   font-family: 'Syne', sans-serif;
-  font-size: 1.6rem; font-weight: 800; line-height: 1;
-  margin-bottom: .25rem;
+  font-size: 1.25rem; font-weight: 800; line-height: 1;
+  margin-bottom: .2rem;
+  letter-spacing: -.02em;
 }
-[data-p="tard"] .pstat-val { color: var(--tard); }
-[data-p="mt"]   .pstat-val { color: var(--mt); }
-[data-p="s"]    .pstat-val { color: var(--s); }
+[data-p="tard"] .pstat-val { color: var(--tard); text-shadow: 0 0 12px rgba(246,166,35,.5); }
+[data-p="mt"]   .pstat-val { color: var(--mt);   text-shadow: 0 0 12px rgba(0,230,118,.5); }
+[data-p="s"]    .pstat-val { color: var(--s);    text-shadow: 0 0 12px rgba(167,139,250,.5); }
 
 .pstat-lbl {
   font-family: 'JetBrains Mono', monospace;
-  font-size: .6rem; color: var(--muted);
+  font-size: .58rem; color: var(--muted);
   text-transform: uppercase; letter-spacing: .07em;
 }
 
@@ -490,7 +496,8 @@ body {
 .fi-name {
   font-family: 'Space Grotesk', sans-serif;
   font-size: .84rem; font-weight: 700;
-  color: var(--text); line-height: 1.4;
+  color: #fff; line-height: 1.4;
+  text-shadow: 0 0 10px rgba(255,255,255,.15);
 }
 .fi-desc { font-size: .83rem; color: var(--text2); line-height: 1.65; }
 .fi-desc code {
