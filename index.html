@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>นวรินทร์ อนันตวรวงศ์</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap">
+
+<style>
+  :root {
+    --bg: #EDF2F8;
+    --surface: #FFFFFF;
+    --elevated: #F4F7FB;
+    --text: #0D1B2A;
+    --text2: #3E5468;
+    --muted: #7A93A8;
+    --accent: #1C4E9B;
+    --accent-soft: #D6E6F7;
+    --border: #C5D3E0;
+    --chip-bg: #DFE9F5;
+    --chip-text: #1A3A6B;
+
+    --tard: #B07B10;
+    --tard-soft: #FEF3DC;
+    --mt: #1A8C7E;
+    --mt-soft: #DDF3EF;
+    --s: #4251A8;
+    --s-soft: #E6E9F8;
+
+    --tag-tard-bg: var(--tard-soft);
+    --tag-tard-text: var(--tard);
+    --tag-mt-bg: var(--mt-soft);
+    --tag-mt-text: var(--mt);
+    --tag-s-bg: var(--s-soft);
+    --tag-s-text: var(--s);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #090F1C;
+      --surface: #0F1A2B;
+      --elevated: #152234;
+      --text: #DCE8F6;
+      --text2: #7AACCC;
+      --muted: #3A5570;
+      --accent: #4A88D6;
+      --accent-soft: #0B1E38;
+      --border: #1A2F48;
+      --chip-bg: #102030;
+      --chip-text: #79B8E8;
+
+      --tard: #D4A030;
+      --tard-soft: #201500;
+      --mt: #38B5A5;
+      --mt-soft: #091E1B;
+      --s: #7B8FD4;
+      --s-soft: #0C1030;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #090F1C;
+    --surface: #0F1A2B;
+    --elevated: #152234;
+    --text: #DCE8F6;
+    --text2: #7AACCC;
+    --muted: #3A5570;
+    --accent: #4A88D6;
+    --accent-soft: #0B1E38;
+    --border: #1A2F48;
+    --chip-bg: #102030;
+    --chip-text: #79B8E8;
+
+    --tard: #D4A030;
+    --tard-soft: #201500;
+    --mt: #38B5A5;
+    --mt-soft: #091E1B;
+    --s: #7B8FD4;
+    --s-soft: #0C1030;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Sarabun', 'Leelawadee UI', 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.7rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .hname {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text);
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
+
+  .site-nav {
+    display: flex;
+    gap: 0;
+    list-style: none;
+  }
+
+  .site-nav a {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text2);
+    text-decoration: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    transition: background 0.12s, color 0.12s;
+  }
+
+  .site-nav a:hover,
+  .site-nav a:focus-visible {
+    background: var(--elevated);
+    color: var(--text);
+  }
+
+  /* ── Hero ── */
+  .hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, var(--border) 1.2px, transparent 1.2px);
+    background-size: 26px 26px;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .hero-inner { position: relative; }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-name-th {
+    font-size: clamp(2.6rem, 7vw, 4rem);
+    font-weight: 800;
+    line-height: 1.08;
+    color: var(--text);
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-name-en {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-bio {
+    font-size: 1rem;
+    color: var(--text2);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 2.25rem;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1.5px solid var(--accent);
+    padding: 0.5rem 1.1rem;
+    border-radius: 7px;
+    transition: background 0.12s, color 0.12s;
+    font-family: inherit;
+  }
+
+  .contact-btn:hover,
+  .contact-btn:focus-visible {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* ── Sections ── */
+  .section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .section-title {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1.75rem;
+    text-wrap: balance;
+  }
+
+  /* ── Skills ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+  }
+
+  .skill-group-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .chip {
+    background: var(--chip-bg);
+    color: var(--chip-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.18rem 0.55rem;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  /* ── Projects ── */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .project-body {
+    padding: 1.75rem 1.75rem 1.75rem 2rem;
+    border-left: 4px solid transparent;
+  }
+
+  [data-p="tard"] .project-body { border-left-color: var(--tard); }
+  [data-p="mt"]   .project-body { border-left-color: var(--mt); }
+  [data-p="s"]    .project-body { border-left-color: var(--s); }
+
+  .role-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.6rem;
+    border-radius: 99px;
+    margin-bottom: 0.85rem;
+  }
+
+  [data-p="tard"] .role-tag { background: var(--tag-tard-bg); color: var(--tag-tard-text); }
+  [data-p="mt"]   .role-tag { background: var(--tag-mt-bg);   color: var(--tag-mt-text); }
+  [data-p="s"]    .role-tag { background: var(--tag-s-bg);    color: var(--tag-s-text); }
+
+  .project-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.25;
+    margin-bottom: 0.2rem;
+  }
+
+  .project-subtitle {
+    font-size: 0.875rem;
+    color: var(--text2);
+    margin-bottom: 1rem;
+  }
+
+  .stack-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.32rem;
+    margin-bottom: 1rem;
+  }
+
+  .stack-chip {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    background: var(--elevated);
+    color: var(--text2);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  .project-desc {
+    font-size: 0.925rem;
+    color: var(--text2);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    max-width: 680px;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 0.65rem;
+  }
+
+  .feat {
+    background: var(--elevated);
+    border-radius: 6px;
+    padding: 0.7rem 0.85rem;
+  }
+
+  .feat-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.18rem;
+  }
+
+  .feat-desc {
+    font-size: 0.775rem;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
+  .feat-section {
+    margin-top: 1.25rem;
+  }
+
+  .feat-section-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.55rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .stat-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.65rem;
+    border-radius: 99px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* ── Footer ── */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .footer-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .footer-email {
+    font-size: 0.875rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .footer-email:hover { text-decoration: underline; }
+
+  .footer-note {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .hero { padding: 3rem 1.25rem 2.5rem; }
+    .section { padding: 2.5rem 1.25rem; }
+    .project-body { padding: 1.25rem 1.25rem 1.25rem 1.5rem; }
+    .site-header { padding: 0.65rem 1.25rem; }
+    .site-nav a { padding: 0.3rem 0.55rem; font-size: 0.78rem; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .site-footer { padding: 2rem 1.25rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="hname">นวรินทร์ อนันตวรวงศ์</span>
+  <nav aria-label="เมนูหลัก">
+    <ul class="site-nav">
+      <li><a href="#skills">ทักษะ</a></li>
+      <li><a href="#projects">โปรเจกต์</a></li>
+      <li><a href="#contact">ติดต่อ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="top" aria-label="แนะนำตัว">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Full-Stack Developer</p>
+    <h1 class="hero-name-th">นวรินทร์ อนันตวรวงศ์</h1>
+    <p class="hero-name-en">Nawarin Anantawarawong</p>
+    <p class="hero-bio">
+      พัฒนาระบบจัดการข้อมูลภายในองค์กรด้วย PHP และ Laravel
+      เน้น backend logic ที่ซับซ้อน เช่น state machine, import pipeline
+      และ reporting engine — พร้อมออกแบบ UI ให้ใช้งานได้จริง
+      ในสภาพแวดล้อมการทำงานจริง
+    </p>
+    <a class="contact-btn" href="mailto:navarin.ananta@gmail.com">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      navarin.ananta@gmail.com
+    </a>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <p class="section-eyebrow">ความสามารถ</p>
+  <h2 class="section-title">Tech Stack</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <p class="skill-group-label">Backend</p>
+      <div class="chips">
+        <span class="chip">PHP 8</span>
+        <span class="chip">Laravel 12</span>
+        <span class="chip">MySQL</span>
+        <span class="chip">Procedural PHP</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-label">Frontend</p>
+      <div class="chips">
+        <span class="chip">JavaScript</span>
+        <span class="chip">jQuery</span>
+        <span class="chip">Bootstrap 5</span>
+        <span class="chip">HTML / CSS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-label">Libraries</p>
+      <div class="chips">
+        <span class="chip">PhpSpreadsheet</span>
+        <span class="chip">maatwebsite/excel</span>
+        <span class="chip">JsBarcode</span>
+        <span class="chip">HTMLPurifier</span>
+        <span class="chip">ZipArchive</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-label">UI Components</p>
+      <div class="chips">
+        <span class="chip">Select2</span>
+        <span class="chip">SortableJS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-label">Database</p>
+      <div class="chips">
+        <span class="chip">Window Functions</span>
+        <span class="chip">TEMP TABLE</span>
+        <span class="chip">Bulk Insert</span>
+        <span class="chip">FSM</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-label">Other</p>
+      <div class="chips">
+        <span class="chip">Git</span>
+        <span class="chip">cURL</span>
+        <span class="chip">EAN-13</span>
+        <span class="chip">CODE39</span>
+        <span class="chip">SHA-1 Hash</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <p class="section-eyebrow">ผลงาน</p>
+  <h2 class="section-title">โปรเจกต์ที่พัฒนา</h2>
+  <div class="projects-list">
+
+    <article class="project-card" data-p="tard">
+      <div class="project-body">
+        <span class="role-tag">PHP Procedural · MySQL · jQuery</span>
+        <h3 class="project-name">Tard — ระบบจัดการถาด Dutch Mill</h3>
+        <p class="project-subtitle">ระบบครบวงจรติดตามถาดพลาสติกรถส่งนม รองรับ 3 บทบาทผู้ใช้งาน (User · Home/Admin · Supervisor)</p>
+
+        <div class="stat-row">
+          <span class="stat-pill">100+ PHP files</span>
+          <span class="stat-pill">3 บทบาท</span>
+          <span class="stat-pill">13 export types</span>
+          <span class="stat-pill">9-state status engine</span>
+          <span class="stat-pill">5 upload fix modes</span>
+        </div>
+
+        <div class="stack-chips">
+          <span class="stack-chip">PHP 8</span>
+          <span class="stack-chip">MySQL</span>
+          <span class="stack-chip">jQuery</span>
+          <span class="stack-chip">Bootstrap 5</span>
+          <span class="stack-chip">PhpSpreadsheet</span>
+          <span class="stack-chip">Select2</span>
+          <span class="stack-chip">SortableJS</span>
+          <span class="stack-chip">HTMLPurifier</span>
+          <span class="stack-chip">ZipArchive</span>
+        </div>
+
+        <p class="project-desc">
+          ระบบครบวงจรสำหรับบันทึกและติดตามการเคลื่อนที่ของถาดพลาสติกในทุกเที่ยวรถ
+          รองรับวิเคราะห์ประเภทคืนไม่ครบ 4 แบบ รายงาน KPI รายวัน/รายสาย
+          นำเข้าข้อมูลจาก Excel พร้อม rollback ย้อนข้อมูล และออก export 13 รูปแบบ
+        </p>
+
+        <div class="feat-section">
+          <p class="feat-section-label">หน้าบันทึกและค้นหา</p>
+          <div class="feature-grid">
+            <div class="feat">
+              <p class="feat-name">กระดานค้นหา (Search Board)</p>
+              <p class="feat-desc">12+ filter: สถานะ (9 ค่า), วันที่/เวลาออก-เข้า-อัพโหลด, ทะเบียน, สาย, ปลายทาง, customer_code (พิมพ์ "-" = ไม่มีรหัส), ผู้บันทึก, tray_id หลายค่า · pagination แบบ daily-mode (รายวัน) + full-search mode</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">บันทึกรับเข้า (Add Return)</p>
+              <p class="feat-desc">บันทึกหลายคันในคราวเดียว · AJAX fetch_tray โหลดถาด + ajax_check ตรวจขาด/เกิน real-time · รองรับ sub-tray ตลิ่ง (tray_id-1, tray_id-2) · hub modal บันทึกยืม/ขายต่อพนักงานแต่ละคน · UPSERT inbound+outbound ในเดียว transaction</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">แก้ไขข้อมูลย้อนหลัง (Supervisor)</p>
+              <p class="feat-desc">4 หน้าแยกกัน: edit_record (รายคัน), edit_batch (หลายคัน), edit_hub (ศูนย์), edit_inbound_group (กลุ่มรับเข้า)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feat-section">
+          <p class="feat-section-label">วิเคราะห์ประเภทคืนไม่ครบ</p>
+          <div class="feature-grid">
+            <div class="feat">
+              <p class="feat-name">ตรวจสอบขาดเกิน</p>
+              <p class="feat-desc">เปรียบเทียบถาดที่ออกกับถาดที่รับกลับ แสดงส่วนต่างรายเที่ยวรถ</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">ถาดยืม + ประวัติยืม</p>
+              <p class="feat-desc">บันทึกยืม/คืนถาด · validation 2 ชั้น: per-tray net AND global pool net (max(0,−net)) ป้องกันคืนเกินยอด · transaction + CALL sp_update_vehicle_status · ประวัติรวมยอด GROUP BY tray_id, employee_id, tray_type</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">ถาดซื้อ/ขาย</p>
+              <p class="feat-desc">บันทึกถาดที่ซื้อขายออกนอกระบบ จัดกลุ่มตาม ISO Week Cycle · verify_clear/undo_clear เปลี่ยนสถานะ → CALL sp_update_vehicle_status · edit_doc แก้ doc_no, book_no, po_no, inbound_doc</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feat-section">
+          <p class="feat-section-label">รายงานและ KPI</p>
+          <div class="feature-grid">
+            <div class="feat">
+              <p class="feat-name">KPI หน้าหลัก (summary_return)</p>
+              <p class="feat-desc">แสดงรายเที่ยวรถรับเข้าพร้อม 9-state status · filter: return_car_plate, วันที่, สถานะ, recorder, เวลาบันทึก · แก้ไขกลุ่มได้ผ่าน edit_inbound_group</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">สรุปประจำวัน</p>
+              <p class="feat-desc">สรุป KPI รายวัน ย้อนหลังได้หลายวัน</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">สรุปสายรถ</p>
+              <p class="feat-desc">สรุปยอดถาดแยกตามสายรถในช่วงเวลาที่เลือก</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">รายงานสรุปยอดถาด</p>
+              <p class="feat-desc">ยอดออก-รับ diff ต่อประเภทถาด group by วัน/เดือน · shift-aware date สำหรับรับเข้า · dynamic tray columns จาก config · grand total ทุกแถว</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">รายงานกำหนดเงื่อนไขเอง</p>
+              <p class="feat-desc">Custom query builder เลือก field + operator (text/date/time/number) + value สร้าง report เองได้</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feat-section">
+          <p class="feat-section-label">นำเข้าและแก้ไขข้อมูล</p>
+          <div class="feature-grid">
+            <div class="feat">
+              <p class="feat-name">Excel Import หลัก</p>
+              <p class="feat-desc">import_view ตรวจ column count ก่อน move file → user confirm → cron_import_shared (async, fire-and-forget) → MD5 dedup → อ่าน active tray_settings แบบ dynamic → bulk INSERT 500 แถว/batch ใน transaction → progress tracking</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">JSONL Fix Pipeline</p>
+              <p class="feat-desc">upload_fix (ทั่วไป/ตลิ่ง/ศูนย์) → cron staging=1: อ่าน xlsx chunked + MD5 dedup → เขียน JSONL diff → preview_fix เปรียบเทียบ before/after → apply_fix confirm/cancel → snapshot บันทึก 6 ตารางก่อน apply → progress tracking</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">Upload Fix 5 แบบ</p>
+              <p class="feat-desc">ทั่วไป/ตลิ่ง/ศูนย์: JSONL staging pipeline (async cron → preview diff → confirm/cancel) · center_adj: PhpSpreadsheet อ่านตรง 4 ประเภท (ยืม/คืนยืม/ขาย/ซื้อ) ใน transaction · rollback: ย้อนจาก JSON snapshots 3 ประเภท</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">Trash / Restore / ลบถาวร</p>
+              <p class="feat-desc">3 โหมด: soft delete (is_deleted=1) · restore คืนค่า · permanent delete ลบ cascade 6 ตาราง ด้วย transaction</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feat-section">
+          <p class="feat-section-label">ส่งออก Excel</p>
+          <div class="feature-grid">
+            <div class="feat">
+              <p class="feat-name">Export Hub 13 ประเภท</p>
+              <p class="feat-desc">ออก Excel ผ่าน async download พร้อม progress bar รองรับ 13 รูปแบบ (ขาออก, รับเข้า, ยืม, ศูนย์ ฯลฯ)</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">Report Builder</p>
+              <p class="feat-desc">เลือก column จาก all_col_defs รวม inbound+outbound ในรายงานเดียว auto-arrange คู่ถาด (out1,in1,out2,in2) มี AJAX live preview</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feat-section">
+          <p class="feat-section-label">ตั้งค่าระบบและจัดการผู้ใช้</p>
+          <div class="feature-grid">
+            <div class="feat">
+              <p class="feat-name">ตั้งค่าถาด / Recorder / ศูนย์</p>
+              <p class="feat-desc">admin_trays: กำหนด display_name, display_order, is_active พร้อม tray_settings_log · admin_recorder: จัดการชื่อผู้บันทึก (add/edit/toggle/delete) · hub_conditions: keyword ระบุ trip ศูนย์</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">รายการ Employees</p>
+              <p class="feat-desc">CRUD ตาราง employees (id, name, source, customer) · import จาก Excel ด้วย PhpSpreadsheet · edit ใช้ transaction delete+insert เพื่อป้องกัน partial update</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">ล้างข้อมูล</p>
+              <p class="feat-desc">clear_by_date: ลบ cascade 6 ตารางตามช่วงวันที่ + reset AUTO_INCREMENT · clear_wrong_outbound: ลบ vehicle_logs ที่ไม่มี inbound match (i.tray_id IS NULL) ตาม datetime range</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">จัดการสิทธิ์ผู้ใช้</p>
+              <p class="feat-desc">3 roles: user/supervisor/admin · set_role (ป้องกันแก้ role ตัวเอง), set_name, reset_pass ด้วย bcrypt · ระบบสมัครสมาชิกในตัว</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feat-section">
+          <p class="feat-section-label">Technical Highlights</p>
+          <div class="feature-grid">
+            <div class="feat">
+              <p class="feat-name">9-State Status Engine</p>
+              <p class="feat-desc">2× TEMP TABLE ENGINE=MEMORY รวม tray_discrepancies + tray_borrowed + tray_sold_borrowed แล้ว CASE WHEN คำนวณ 9 สถานะ (1,2,3,4,5,7,8,10,13)</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">3-Round Fuzzy Matching</p>
+              <p class="feat-desc">R1: exact/substring · R2: keyword→กลุ่ม→ชื่อเต็ม · R3: ตัดคำนำหน้ากลุ่มเทียบชื่อสาขา จับคู่ destination → customer_code</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">Shift-Aware Date</p>
+              <p class="feat-desc">CASE WHEN HOUR(start_time) &lt; 7 THEN DATE_SUB(in_date, INTERVAL 1 DAY) ใน KPI และ report_summary</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">Async Fire-and-Forget</p>
+              <p class="feat-desc">cURL CURLOPT_TIMEOUT_MS=2000, CURLOPT_NOSIGNAL=1 trigger cron_import หลัง upload โดยไม่รอ response</p>
+            </div>
+            <div class="feat">
+              <p class="feat-name">ISO Week Cycle</p>
+              <p class="feat-desc">getCycle() ใน sold_tray.php: ceil(ISO_WEEK / 4) → 1–13 cycle ต่อปี ใช้ getCycleLabel() group รายการถาดซื้อ/ขายตามรอบ</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <article class="project-card" data-p="mt">
+      <div class="project-body">
+        <span class="role-tag">Laravel 12 · MySQL · Vanilla JS</span>
+        <h3 class="project-name">MT — ระบบนับสต็อก</h3>
+        <p class="project-subtitle">บันทึกสต็อกด้วยบาร์โค้ด รองรับหลายรอบนับและผู้ใช้หลายคนพร้อมกัน</p>
+        <div class="stack-chips">
+          <span class="stack-chip">Laravel 12</span>
+          <span class="stack-chip">PHP 8</span>
+          <span class="stack-chip">MySQL</span>
+          <span class="stack-chip">maatwebsite/excel</span>
+          <span class="stack-chip">Vanilla JS</span>
+          <span class="stack-chip">Custom CSS</span>
+        </div>
+        <p class="project-desc">
+          ระบบนับสต็อกสินค้าผ่านการสแกนบาร์โค้ด รองรับการนับหลายรอบ บันทึก buffer
+          และ export รายงาน พร้อม supervisor dashboard จัดการรอบนับ
+        </p>
+        <div class="feature-grid">
+          <div class="feat">
+            <p class="feat-name">HandlesBufferScanning</p>
+            <p class="feat-desc">4 states: found_in_round, new_item, unknown_barcode, select_product</p>
+          </div>
+          <div class="feat">
+            <p class="feat-name">seedRound</p>
+            <p class="feat-desc">copy mat_codes จากรอบก่อน, INSERT bulk 500 records/batch</p>
+          </div>
+          <div class="feat">
+            <p class="feat-name">resolveExpiryDate</p>
+            <p class="feat-desc">priority chain: clear_pay &gt; min(fp1,fp2) &gt; fp1 &gt; fp2 &gt; exp_cr</p>
+          </div>
+          <div class="feat">
+            <p class="feat-name">ROW_NUMBER() History</p>
+            <p class="feat-desc">PARTITION BY order_date, po, barcode ORDER BY id DESC</p>
+          </div>
+          <div class="feat">
+            <p class="feat-name">3-Shift Buffer Model</p>
+            <p class="feat-desc">3 ประเภท (Full/Split/Pack) × 3 กะ (morning/afternoon/night) · nextShiftForToday() ตรวจกะล่าสุดใน 3 model แล้วแนะนำกะถัดไปอัตโนมัติ · Supervisor เพิ่มรายการ + export Excel</p>
+          </div>
+          <div class="feat">
+            <p class="feat-name">product_barcodes Design</p>
+            <p class="feat-desc">mat_code เป็น PK เพราะ 1 barcode มีได้หลาย mat_code</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card" data-p="s">
+      <div class="project-body">
+        <span class="role-tag">Laravel 12 · MySQL · JsBarcode</span>
+        <h3 class="project-name">S — ระบบสแกนจัดส่ง + พิมพ์ป้าย</h3>
+        <p class="project-subtitle">สแกน EAN-13 รับของเข้า และพิมพ์ป้ายสินค้า CODE39 พร้อม template editor</p>
+        <div class="stack-chips">
+          <span class="stack-chip">Laravel 12</span>
+          <span class="stack-chip">PHP 8</span>
+          <span class="stack-chip">MySQL</span>
+          <span class="stack-chip">JsBarcode</span>
+          <span class="stack-chip">Bootstrap 5</span>
+          <span class="stack-chip">PhpSpreadsheet</span>
+          <span class="stack-chip">maatwebsite/excel</span>
+        </div>
+        <p class="project-desc">
+          นำเข้าข้อมูลใบส่งของจาก Excel สแกนบาร์โค้ด EAN-13 รับของเข้า
+          และพิมพ์ป้ายสินค้า CODE39 พร้อม label template editor
+          ที่ปรับขนาดฟอนต์อัตโนมัติด้วย CSS Container Queries
+        </p>
+        <div class="feature-grid">
+          <div class="feat">
+            <p class="feat-name">SHA-1 Deduplication</p>
+            <p class="feat-desc">sha1(json_encode($rowData)) เป็น content_hash ต่อแถว ป้องกัน import แถวซ้ำ · duplicate จะอัพเดต last_seen_at เท่านั้น</p>
+          </div>
+          <div class="feat">
+            <p class="feat-name">Route Filter</p>
+            <p class="feat-desc">ค้นหาคอลัมน์ "สายรถ" โดย scan หาค่า "ไม่ใช่รอบ" จากข้อมูลจริงก่อน (ไม่ใช่ header text) เพื่อแก้ปัญหา header ซ้ำ · import เฉพาะแถวที่ routeValue = "ไม่ใช่รอบ"</p>
+          </div>
+          <div class="feat">
+            <p class="feat-name">EAN-13 Zero-Pad Fallback</p>
+            <p class="feat-desc">เครื่องสแกนบางรุ่นตัด leading zero ออก (EAN-13 → UPC-A 12 หลัก) · ScanController.findByBarcode() ทำ str_pad(barcode, 13, '0', STR_PAD_LEFT) fallback อัตโนมัติ</p>
+          </div>
+          <div class="feat">
+            <p class="feat-name">Dispatch Status Dashboard</p>
+            <p class="feat-desc">สรุปรายการจัดส่ง GROUP BY name แสดง total vs scanned_count · เรียงจากที่สแกนน้อยที่สุดก่อน (unscanned DESC) พร้อม export XLSX</p>
+          </div>
+          <div class="feat">
+            <p class="feat-name">Material Import with Images</p>
+            <p class="feat-desc">MaterialImportService ใช้ PhpSpreadsheet extractImagesByRow ดึงรูปภาพฝังใน Excel นำเข้าพร้อม mat_code + name + image ในคราวเดียว</p>
+          </div>
+          <div class="feat">
+            <p class="feat-name">Label Template Editor</p>
+            <p class="feat-desc">field_positions เป็น JSON % ของขนาดภาพพื้นหลัง (x,y,width,height) · 4 field: mat_code, name, image, barcode · CSS Container Queries (cqh/cqw) scale ฟอนต์อัตโนมัติ</p>
+          </div>
+          <div class="feat">
+            <p class="feat-name">EAN-13 + CODE39 (JsBarcode)</p>
+            <p class="feat-desc">EAN-13 สแกนรับของ, CODE39 พิมพ์ป้ายวัสดุ · Export XLSX + print view พิมพ์ตรงจากเบราว์เซอร์</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<footer class="site-footer" id="contact">
+  <p class="footer-name">นวรินทร์ อนันตวรวงศ์ · Nawarin Anantawarawong</p>
+  <a class="footer-email" href="mailto:navarin.ananta@gmail.com">navarin.ananta@gmail.com</a>
+  <p class="footer-note">Full-Stack Developer · PHP · Laravel · MySQL</p>
+</footer>
+
+</body>
+</html>
