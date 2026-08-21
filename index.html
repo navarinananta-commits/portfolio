@@ -6,137 +6,169 @@
 <title>นวรินทร์ อนันตวรวงศ์</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Sarabun:wght@400;500;600;700;800&display=swap">
 <style>
+/* ─── TOKENS ─── */
 :root {
-  --bg:       #F5F3EF;
-  --surface:  #FFFFFF;
-  --raised:   #EDEAE4;
-  --text:     #131110;
-  --text2:    #5A5048;
-  --muted:    #9A8E84;
-  --accent:   #1845C8;
-  --border:   #DDD8CF;
-  --tard:     #A86E0A;
-  --mt:       #107A72;
-  --s:        #3D47A2;
+  --bg:        #060B14;
+  --surface:   #0C1220;
+  --card:      #0F1826;
+  --border:    #1A2540;
+  --text:      #E2E8F5;
+  --text2:     #7A90B0;
+  --muted:     #3A4F70;
+  --cyan:      #22D3EE;
+  --cyan-dim:  rgba(34,211,238,.08);
+  --cyan-glow: 0 0 20px rgba(34,211,238,.18);
+
+  --tard:      #F59E0B;
+  --tard-dim:  rgba(245,158,11,.08);
+  --mt:        #10B981;
+  --mt-dim:    rgba(16,185,129,.08);
+  --s:         #818CF8;
+  --s-dim:     rgba(129,140,248,.08);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg:       #0C0A08;
-    --surface:  #141210;
-    --raised:   #1C1916;
-    --text:     #EDE8E2;
-    --text2:    #9A8E84;
-    --muted:    #5A5048;
-    --accent:   #698CFF;
-    --border:   #272320;
-    --tard:     #D4A030;
-    --mt:       #36B3A3;
-    --s:        #7B8FD4;
-  }
+/* dark-first design — no overrides needed for prefers-color-scheme */
+
+:root[data-theme="light"] {
+  --bg:        #F0F4FA;
+  --surface:   #FFFFFF;
+  --card:      #F8FAFC;
+  --border:    #CBD5E1;
+  --text:      #0F172A;
+  --text2:     #475569;
+  --muted:     #94A3B8;
+  --cyan:      #0891B2;
+  --cyan-dim:  rgba(8,145,178,.08);
+  --cyan-glow: 0 0 16px rgba(8,145,178,.12);
+  --tard:      #B45309;
+  --tard-dim:  rgba(180,83,9,.07);
+  --mt:        #047857;
+  --mt-dim:    rgba(4,120,87,.07);
+  --s:         #4338CA;
+  --s-dim:     rgba(67,56,202,.07);
 }
 
-:root[data-theme="dark"] {
-  --bg:       #0C0A08;
-  --surface:  #141210;
-  --raised:   #1C1916;
-  --text:     #EDE8E2;
-  --text2:    #9A8E84;
-  --muted:    #5A5048;
-  --accent:   #698CFF;
-  --border:   #272320;
-  --tard:     #D4A030;
-  --mt:       #36B3A3;
-  --s:        #7B8FD4;
-}
-
+/* ─── RESET ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: 'Sarabun', 'Leelawadee UI', system-ui, sans-serif;
+  font-family: 'Sarabun', 'Space Grotesk', system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.75;
-  font-size: 16px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  font-size: 16px;
 }
 
-.jk { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+.mono { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+.gsk  { font-family: 'Space Grotesk', system-ui, sans-serif; }
+.syne { font-family: 'Syne', system-ui, sans-serif; }
 
-/* ── NAV ── */
+/* ─── NAV ─── */
 .nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--bg);
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(6,11,20,.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  padding: 0 2rem;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 54px;
 }
 
-.nav-name {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.01em;
+:root[data-theme="light"] .nav { background: rgba(240,244,250,.9); }
+
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .825rem; font-weight: 700;
+  color: var(--cyan); letter-spacing: .02em;
 }
 
-.nav-links { list-style: none; display: flex; gap: 0.15rem; }
+.nav-links { list-style: none; display: flex; gap: .1rem; }
 
 .nav-links a {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text2);
-  text-decoration: none;
-  padding: 0.3rem 0.7rem;
-  border-radius: 5px;
-  transition: color 0.1s, background 0.1s;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .78rem; font-weight: 600;
+  color: var(--text2); text-decoration: none;
+  padding: .32rem .7rem; border-radius: 5px;
+  transition: color .15s, background .15s;
 }
-.nav-links a:hover { color: var(--text); background: var(--raised); }
+.nav-links a:hover { color: var(--cyan); background: var(--cyan-dim); }
 
-/* ── LAYOUT ── */
-.w {
-  max-width: 860px;
-  margin: 0 auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
+/* ─── LAYOUT ─── */
+.w { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
 
-/* ── HERO ── */
-.hero { padding: 6rem 0 5.5rem; }
-
-.hero-eyebrow {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1.4rem;
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  padding: 7rem 0 6rem;
+  overflow: hidden;
 }
 
-.hero-name {
-  font-size: clamp(2.8rem, 9vw, 5.2rem);
+/* dot grid */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(34,211,238,.18) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+}
+
+/* glow blob */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -60px; left: -80px;
+  width: 500px; height: 400px;
+  background: radial-gradient(circle, rgba(34,211,238,.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner { position: relative; z-index: 1; }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem; font-weight: 500;
+  color: var(--cyan);
+  border: 1px solid rgba(34,211,238,.35);
+  background: var(--cyan-dim);
+  padding: .3rem .8rem; border-radius: 99px;
+  margin-bottom: 1.75rem;
+  letter-spacing: .04em;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 6px var(--cyan);
+  flex-shrink: 0;
+}
+
+.hero-name-th {
+  font-family: 'Sarabun', sans-serif;
+  font-size: clamp(3.2rem, 10vw, 6rem);
   font-weight: 800;
-  line-height: 1.04;
-  letter-spacing: -0.035em;
+  line-height: 1.02;
+  letter-spacing: -.03em;
   color: var(--text);
   text-wrap: balance;
-  margin-bottom: 0.45rem;
+  margin-bottom: .4rem;
 }
 
 .hero-name-en {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(1rem, 2.2vw, 1.2rem);
-  font-weight: 400;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  font-weight: 700;
   color: var(--muted);
+  letter-spacing: .04em;
+  text-transform: uppercase;
   margin-bottom: 2.5rem;
 }
 
@@ -144,250 +176,262 @@ body {
   font-size: 1.025rem;
   color: var(--text2);
   line-height: 1.85;
-  max-width: 520px;
+  max-width: 500px;
   margin-bottom: 2.5rem;
 }
 
-.cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.84rem;
-  font-weight: 700;
-  color: var(--accent);
+.hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .85rem; font-weight: 700;
+  color: var(--bg); background: var(--cyan);
   text-decoration: none;
-  border: 1.5px solid var(--accent);
-  padding: 0.55rem 1.2rem;
-  border-radius: 6px;
-  transition: background 0.12s, color 0.12s;
+  padding: .65rem 1.4rem; border-radius: 7px;
+  transition: opacity .12s, box-shadow .12s;
+  box-shadow: 0 0 18px rgba(34,211,238,.3);
 }
-.cta:hover, .cta:focus-visible { background: var(--accent); color: #fff; }
+.btn-primary:hover { opacity: .9; box-shadow: 0 0 28px rgba(34,211,238,.45); }
 
-/* ── SECTION ── */
-.section {
-  padding: 4.5rem 0;
-  border-top: 1px solid var(--border);
-}
+/* ─── SECTION ─── */
+.section { padding: 5rem 0; border-top: 1px solid var(--border); }
 
-.sec-label {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.67rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.45rem;
+.sec-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .68rem; font-weight: 500;
+  color: var(--cyan); letter-spacing: .14em;
+  text-transform: uppercase; margin-bottom: .6rem;
 }
+.sec-kicker::before { content: '// '; opacity: .5; }
 
 .sec-title {
-  font-size: 1.55rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.02em;
-  margin-bottom: 2.5rem;
-  text-wrap: balance;
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem; font-weight: 800;
+  color: var(--text); letter-spacing: -.02em;
+  margin-bottom: 2.75rem; text-wrap: balance;
 }
 
-/* ── SKILLS ── */
-.skill-table { border-top: 1px solid var(--border); }
-
-.skill-row {
+/* ─── SKILLS ─── */
+.sk-grid {
   display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 1.25rem;
-  padding: 0.95rem 0;
-  border-bottom: 1px solid var(--border);
-  align-items: baseline;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.sk-cell {
+  background: var(--card);
+  padding: 1.25rem 1.4rem;
 }
 
 .sk-cat {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .67rem; font-weight: 500;
+  color: var(--cyan); letter-spacing: .1em;
+  text-transform: uppercase; margin-bottom: .85rem;
 }
 
-.sk-items {
-  font-size: 0.925rem;
+.sk-tags {
+  display: flex; flex-direction: column; gap: .3rem;
+}
+
+.sk-tag {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .84rem; color: var(--text2);
+  padding: .28rem .6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  transition: color .12s, border-color .12s;
+}
+.sk-tag:hover { color: var(--text); border-color: var(--muted); }
+
+/* ─── PROJECT LIST ─── */
+.proj-list { display: flex; flex-direction: column; gap: 2rem; }
+
+.proj-card {
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+[data-p="tard"] .proj-card:hover { border-color: rgba(245,158,11,.4); box-shadow: 0 0 30px rgba(245,158,11,.07); }
+[data-p="mt"]   .proj-card:hover { border-color: rgba(16,185,129,.4); box-shadow: 0 0 30px rgba(16,185,129,.07); }
+[data-p="s"]    .proj-card:hover { border-color: rgba(129,140,248,.4); box-shadow: 0 0 30px rgba(129,140,248,.07); }
+
+/* top accent bar */
+.proj-bar { height: 3px; }
+[data-p="tard"] .proj-bar { background: linear-gradient(90deg, var(--tard) 0%, transparent 100%); }
+[data-p="mt"]   .proj-bar { background: linear-gradient(90deg, var(--mt)   0%, transparent 100%); }
+[data-p="s"]    .proj-bar { background: linear-gradient(90deg, var(--s)    0%, transparent 100%); }
+
+.proj-head {
+  padding: 1.75rem 2rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.proj-num {
+  font-family: 'Syne', sans-serif;
+  font-size: .7rem; font-weight: 800;
+  letter-spacing: .2em; text-transform: uppercase;
+  margin-bottom: .6rem;
+}
+[data-p="tard"] .proj-num { color: var(--tard); }
+[data-p="mt"]   .proj-num { color: var(--mt); }
+[data-p="s"]    .proj-num { color: var(--s); }
+
+.proj-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.45rem; font-weight: 800;
+  color: var(--text); letter-spacing: -.02em;
+  line-height: 1.15; margin-bottom: .35rem;
+}
+
+.proj-sub {
+  font-size: .9rem; color: var(--text2);
+  line-height: 1.6; margin-bottom: 1.25rem;
+}
+
+.proj-stack {
+  display: flex; flex-wrap: wrap; gap: .4rem;
+}
+
+.ps-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem; font-weight: 500;
+  padding: .22rem .6rem; border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--surface);
   color: var(--text2);
-  line-height: 1.6;
-}
-
-/* ── PROJECTS ── */
-.project-list { display: flex; flex-direction: column; gap: 4rem; }
-
-.project-card { display: block; }
-
-.pc-stripe {
-  height: 3px;
-  border-radius: 1.5px 1.5px 0 0;
-  margin-bottom: 1.75rem;
-}
-[data-p="tard"] .pc-stripe { background: var(--tard); }
-[data-p="mt"]   .pc-stripe { background: var(--mt); }
-[data-p="s"]    .pc-stripe { background: var(--s); }
-
-.pc-tag {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-[data-p="tard"] .pc-tag { color: var(--tard); }
-[data-p="mt"]   .pc-tag { color: var(--mt); }
-[data-p="s"]    .pc-tag { color: var(--s); }
-
-.pc-name {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-bottom: 0.3rem;
-}
-
-.pc-sub {
-  font-size: 0.9rem;
-  color: var(--text2);
-  margin-bottom: 0.8rem;
-}
-
-.pc-stack {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.76rem;
-  color: var(--muted);
-  margin-bottom: 2rem;
-  letter-spacing: 0.01em;
-}
-
-.pc-desc {
-  font-size: 0.95rem;
-  color: var(--text2);
-  line-height: 1.85;
-  max-width: 680px;
-  margin-bottom: 2rem;
 }
 
 /* stats */
-.pc-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-  margin-bottom: 2.5rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
+.proj-stats {
+  display: flex; flex-wrap: wrap;
+  border-top: 1px solid var(--border);
   background: var(--surface);
 }
 
-.pc-stat {
-  flex: 1 1 120px;
-  padding: 1rem 1.25rem;
+.pstat {
+  flex: 1 1 110px;
+  padding: .9rem 1.25rem;
   border-right: 1px solid var(--border);
 }
-.pc-stat:last-child { border-right: none; }
+.pstat:last-child { border-right: none; }
 
-.pc-stat-val {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.02em;
-  line-height: 1;
-  margin-bottom: 0.3rem;
+.pstat-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem; font-weight: 800;
+  line-height: 1; margin-bottom: .2rem;
+}
+[data-p="tard"] .pstat-val { color: var(--tard); }
+[data-p="mt"]   .pstat-val { color: var(--mt); }
+[data-p="s"]    .pstat-val { color: var(--s); }
+
+.pstat-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .65rem; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .05em;
 }
 
-.pc-stat-lbl {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.7rem;
-  color: var(--muted);
-  font-weight: 500;
-  line-height: 1.3;
+/* body */
+.proj-body { padding: 1.75rem 2rem 2rem; }
+
+.proj-desc {
+  font-size: .95rem; color: var(--text2);
+  line-height: 1.85; max-width: 680px;
+  margin-bottom: 2rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border);
 }
 
-/* feature blocks */
-.fblock { margin-bottom: 2.25rem; }
+/* feature sections */
+.fblock { margin-bottom: 1.75rem; }
 .fblock:last-child { margin-bottom: 0; }
 
-.fblock-label {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.67rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
+.fblock-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .67rem; font-weight: 500;
+  color: var(--muted); letter-spacing: .15em;
   text-transform: uppercase;
-  color: var(--muted);
-  padding-bottom: 0.6rem;
+  padding-bottom: .6rem;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 1.1rem;
+  margin-bottom: .5rem;
 }
-
-.flist { display: flex; flex-direction: column; gap: 0; }
 
 .fi {
   display: grid;
-  grid-template-columns: 195px 1fr;
-  gap: 1rem 1.5rem;
-  padding: 0.65rem 0;
+  grid-template-columns: 190px 1fr;
+  gap: .6rem 1.5rem;
+  padding: .65rem 0;
   border-bottom: 1px solid var(--border);
   align-items: baseline;
 }
 .fi:last-child { border-bottom: none; }
 
 .fi-name {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.45;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .84rem; font-weight: 600;
+  color: var(--text); line-height: 1.4;
 }
 
 .fi-desc {
-  font-size: 0.845rem;
-  color: var(--text2);
-  line-height: 1.6;
+  font-size: .84rem; color: var(--text2); line-height: 1.6;
 }
 
-/* ── FOOTER ── */
+/* inline code in descriptions */
+.fi-desc code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .78rem;
+  padding: .08rem .35rem;
+  border-radius: 3px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--cyan);
+}
+
+/* ─── FOOTER ─── */
 .footer {
   border-top: 1px solid var(--border);
-  padding: 3rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
+  padding: 3.5rem 0;
+  display: flex; flex-direction: column; gap: .35rem;
 }
 
-.footer-name { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+.footer-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem; font-weight: 800;
+  color: var(--text); letter-spacing: -.01em;
+}
 
 .footer-email {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.875rem;
-  color: var(--accent);
-  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .9rem; color: var(--cyan); text-decoration: none;
 }
 .footer-email:hover { text-decoration: underline; }
 
 .footer-note {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.75rem;
-  color: var(--muted);
-  margin-top: 0.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem; color: var(--muted);
+  margin-top: .5rem;
 }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 620px) {
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
   .nav { padding: 0 1.25rem; }
-  .w { padding-left: 1.25rem; padding-right: 1.25rem; }
-  .hero { padding: 3.5rem 0 3rem; }
-  .section { padding: 3rem 0; }
-  .skill-row { grid-template-columns: 1fr; gap: 0.2rem; }
-  .fi { grid-template-columns: 1fr; gap: 0.15rem; }
-  .pc-stat { flex-basis: 45%; }
-  .pc-stats { border-radius: 6px; }
-  .pc-stripe { margin-bottom: 1.25rem; }
+  .w { padding: 0 1.25rem; }
+  .hero { padding: 4rem 0 3.5rem; }
+  .section { padding: 3.5rem 0; }
+  .fi { grid-template-columns: 1fr; gap: .12rem; }
+  .proj-head { padding: 1.4rem 1.25rem 1.25rem; }
+  .proj-body { padding: 1.25rem 1.25rem 1.5rem; }
+  .sk-grid { grid-template-columns: 1fr 1fr; }
+  .pstat { flex-basis: 45%; }
 }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -395,346 +439,253 @@ body {
 </head>
 <body>
 
+<!-- NAV -->
 <nav class="nav">
-  <span class="nav-name">นวรินทร์ อนันตวรวงศ์</span>
+  <span class="nav-logo gsk">nawarin.dev</span>
   <ul class="nav-links">
-    <li><a href="#skills">ทักษะ</a></li>
-    <li><a href="#projects">โปรเจกต์</a></li>
-    <li><a href="#contact">ติดต่อ</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <div class="w">
 
-  <!-- HERO -->
-  <section class="hero" id="top" aria-label="แนะนำตัว">
-    <p class="hero-eyebrow">Full-Stack Developer</p>
-    <h1 class="hero-name">นวรินทร์<br>อนันตวรวงศ์</h1>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-badge">Full-Stack Developer</div>
+    <h1 class="hero-name-th">นวรินทร์<br>อนันตวรวงศ์</h1>
     <p class="hero-name-en">Nawarin Anantawarawong</p>
     <p class="hero-bio">
       พัฒนาระบบจัดการข้อมูลภายในองค์กรด้วย PHP และ Laravel
-      เน้น backend logic ที่ซับซ้อน เช่น state machine, import pipeline
-      และ reporting engine — พร้อมออกแบบ UI ที่ใช้งานได้จริง
+      เน้น backend logic ที่ซับซ้อน — state machine, import pipeline
+      และ reporting engine พร้อม UI ที่ใช้งานได้จริง
     </p>
-    <a class="cta" href="mailto:navarin.ananta@gmail.com">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-      navarin.ananta@gmail.com
-    </a>
-  </section>
+    <div class="hero-actions">
+      <a class="btn-primary" href="mailto:navarin.ananta@gmail.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        navarin.ananta@gmail.com
+      </a>
+    </div>
+  </div>
+</section>
 
-  <!-- SKILLS -->
-  <section class="section" id="skills">
-    <p class="sec-label">ความสามารถ</p>
-    <h2 class="sec-title">Tech Stack</h2>
-    <div class="skill-table">
-      <div class="skill-row">
-        <span class="sk-cat">Backend</span>
-        <span class="sk-items">PHP 8 · Laravel 12 · MySQL · Procedural PHP</span>
-      </div>
-      <div class="skill-row">
-        <span class="sk-cat">Frontend</span>
-        <span class="sk-items">JavaScript · jQuery · Bootstrap 5 · HTML / CSS</span>
-      </div>
-      <div class="skill-row">
-        <span class="sk-cat">Libraries</span>
-        <span class="sk-items">PhpSpreadsheet · maatwebsite/excel · JsBarcode · HTMLPurifier · ZipArchive</span>
-      </div>
-      <div class="skill-row">
-        <span class="sk-cat">UI</span>
-        <span class="sk-items">Select2 · SortableJS</span>
-      </div>
-      <div class="skill-row">
-        <span class="sk-cat">Database</span>
-        <span class="sk-items">Window Functions · TEMP TABLE ENGINE=MEMORY · Stored Procedures · Bulk Insert</span>
-      </div>
-      <div class="skill-row">
-        <span class="sk-cat">Other</span>
-        <span class="sk-items">Git · cURL · EAN-13 · CODE39 · SHA-1 Deduplication · MD5 Deduplication</span>
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <p class="sec-kicker">ความสามารถ</p>
+  <h2 class="sec-title">Tech Stack</h2>
+  <div class="sk-grid">
+    <div class="sk-cell">
+      <p class="sk-cat">Backend</p>
+      <div class="sk-tags">
+        <span class="sk-tag">PHP 8</span>
+        <span class="sk-tag">Laravel 12</span>
+        <span class="sk-tag">MySQL</span>
+        <span class="sk-tag">Procedural PHP</span>
       </div>
     </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="section" id="projects">
-    <p class="sec-label">ผลงาน</p>
-    <h2 class="sec-title">โปรเจกต์ที่พัฒนา</h2>
-
-    <div class="project-list">
-
-      <!-- TARD -->
-      <article class="project-card" data-p="tard">
-        <div class="pc-stripe"></div>
-        <p class="pc-tag">PHP Procedural · MySQL · jQuery · Bootstrap 5</p>
-        <h3 class="pc-name">Tard — ระบบจัดการถาด Dutch Mill</h3>
-        <p class="pc-sub">ระบบครบวงจรติดตามถาดพลาสติกรถส่งนม รองรับ 3 บทบาทผู้ใช้งาน</p>
-        <p class="pc-stack">PHP 8 · MySQL · jQuery · Bootstrap 5 · PhpSpreadsheet · Select2 · SortableJS · HTMLPurifier · ZipArchive</p>
-
-        <div class="pc-stats">
-          <div class="pc-stat">
-            <div class="pc-stat-val">100+</div>
-            <div class="pc-stat-lbl">PHP files</div>
-          </div>
-          <div class="pc-stat">
-            <div class="pc-stat-val">3</div>
-            <div class="pc-stat-lbl">User roles</div>
-          </div>
-          <div class="pc-stat">
-            <div class="pc-stat-val">9</div>
-            <div class="pc-stat-lbl">Status states</div>
-          </div>
-          <div class="pc-stat">
-            <div class="pc-stat-val">13</div>
-            <div class="pc-stat-lbl">Export types</div>
-          </div>
-          <div class="pc-stat">
-            <div class="pc-stat-val">5</div>
-            <div class="pc-stat-lbl">Fix modes</div>
-          </div>
-        </div>
-
-        <p class="pc-desc">
-          บันทึกและติดตามการเคลื่อนที่ของถาดพลาสติกในทุกเที่ยวรถส่งนม
-          วิเคราะห์ประเภทคืนไม่ครบ 4 แบบ รายงาน KPI รายวัน/รายสาย
-          นำเข้าข้อมูลจาก Excel พร้อม rollback ย้อนข้อมูล และออก export 13 รูปแบบ
-        </p>
-
-        <div class="fblock">
-          <p class="fblock-label">บันทึกและค้นหา</p>
-          <div class="flist">
-            <div class="fi">
-              <p class="fi-name">กระดานค้นหา</p>
-              <p class="fi-desc">12+ filter — สถานะ 9 ค่า, วันที่/เวลา, ทะเบียน, สาย, ปลายทาง, customer_code (พิมพ์ "-" = ไม่มีรหัส), ผู้บันทึก, tray_id · pagination 2 โหมด: daily-mode รายวัน / full-search</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">บันทึกรับเข้า</p>
-              <p class="fi-desc">บันทึกหลายคันในคราวเดียว · AJAX fetch_tray + ajax_check ตรวจขาด/เกิน real-time · sub-tray ตลิ่ง (tray_id-N) · hub modal ยืม/ขายต่อพนักงาน · UPSERT inbound+outbound ใน transaction เดียว</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">แก้ไขย้อนหลัง</p>
-              <p class="fi-desc">4 หน้าแยก — edit_record (รายคัน), edit_batch (หลายคัน), edit_hub (ศูนย์), edit_inbound_group (กลุ่มรับเข้า)</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="fblock">
-          <p class="fblock-label">วิเคราะห์ประเภทคืนไม่ครบ</p>
-          <div class="flist">
-            <div class="fi">
-              <p class="fi-name">ตรวจสอบขาดเกิน</p>
-              <p class="fi-desc">เปรียบเทียบถาดออก vs รับกลับ แสดงส่วนต่างรายเที่ยวรถ</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">ถาดยืม + ประวัติยืม</p>
-              <p class="fi-desc">validation 2 ชั้น — per-tray net AND global pool net max(0,−net) ป้องกันคืนเกินยอด · transaction + CALL sp_update_vehicle_status · ประวัติ GROUP BY tray_id, employee_id, tray_type</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">ถาดซื้อ/ขาย</p>
-              <p class="fi-desc">จัดกลุ่มตาม ISO Week Cycle · verify_clear/undo_clear → CALL sp_update_vehicle_status · edit_doc แก้ doc_no, book_no, po_no, inbound_doc</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="fblock">
-          <p class="fblock-label">รายงานและ KPI</p>
-          <div class="flist">
-            <div class="fi">
-              <p class="fi-name">KPI รับเข้า</p>
-              <p class="fi-desc">แสดงรายเที่ยวรถ 9-state status · filter: ทะเบียน, วันที่, สถานะ, recorder · แก้ไขกลุ่มได้ผ่าน edit_inbound_group</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">สรุปประจำวัน / สรุปสายรถ</p>
-              <p class="fi-desc">KPI รายวันย้อนหลัง · ยอดถาดแยกสายรถตามช่วงเวลา</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">รายงานสรุปยอดถาด</p>
-              <p class="fi-desc">ยอดออก-รับ diff ต่อประเภทถาด · group by วัน/เดือน · shift-aware date · dynamic tray columns จาก config · grand total</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">Report Builder</p>
-              <p class="fi-desc">เลือก column จาก all_col_defs รวม inbound+outbound · auto-arrange คู่ถาด (out1,in1,out2,in2) · AJAX live preview</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">รายงานกำหนดเงื่อนไขเอง</p>
-              <p class="fi-desc">Custom query builder — เลือก field + operator (text/date/time/number) สร้าง query ได้เอง</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="fblock">
-          <p class="fblock-label">นำเข้าและแก้ไขข้อมูล</p>
-          <div class="flist">
-            <div class="fi">
-              <p class="fi-name">Excel Import หลัก</p>
-              <p class="fi-desc">ตรวจ column count → move file → cron_import_shared async fire-and-forget → MD5 dedup → อ่าน active tray_settings dynamic → bulk INSERT 500 แถว/batch ใน transaction → progress tracking</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">JSONL Fix Pipeline</p>
-              <p class="fi-desc">upload xlsx → cron staging=1 อ่านแบบ chunked + MD5 dedup → เขียน JSONL diff → preview_fix before/after → apply_fix confirm/cancel → snapshot 6 ตารางก่อน apply</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">Upload Fix 5 แบบ</p>
-              <p class="fi-desc">ทั่วไป / ตลิ่ง / ศูนย์ — JSONL staging pipeline · center_adj — PhpSpreadsheet อ่านตรง 4 ประเภท (ยืม/คืนยืม/ขาย/ซื้อ) ใน transaction · rollback — ย้อน snapshot 3 ประเภท</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">Trash / Restore / ลบถาวร</p>
-              <p class="fi-desc">soft delete is_deleted=1 · restore · permanent delete cascade 6 ตาราง ด้วย transaction</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="fblock">
-          <p class="fblock-label">ตั้งค่าและจัดการผู้ใช้</p>
-          <div class="flist">
-            <div class="fi">
-              <p class="fi-name">Export Hub 13 ประเภท</p>
-              <p class="fi-desc">async download พร้อม progress bar · 13 รูปแบบ (ขาออก, รับเข้า, ยืม, ศูนย์ ฯลฯ)</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">ตั้งค่าถาด / Recorder / ศูนย์</p>
-              <p class="fi-desc">admin_trays — display_name, order, is_active + tray_settings_log · admin_recorder — add/edit/toggle/delete · hub_conditions — keyword ระบุ trip ศูนย์</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">Employees</p>
-              <p class="fi-desc">CRUD + import จาก Excel · edit ใช้ transaction delete+insert ป้องกัน partial update</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">จัดการสิทธิ์</p>
-              <p class="fi-desc">3 roles: user/supervisor/admin · set_role (ป้องกันแก้ตัวเอง), set_name, reset_pass bcrypt · ระบบสมัครสมาชิกในตัว</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">ล้างข้อมูล</p>
-              <p class="fi-desc">clear_by_date — cascade 6 ตาราง + reset AUTO_INCREMENT · clear_wrong_outbound — ลบ vehicle_logs ที่ไม่มี inbound match</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="fblock">
-          <p class="fblock-label">Technical Highlights</p>
-          <div class="flist">
-            <div class="fi">
-              <p class="fi-name">9-State Status Engine</p>
-              <p class="fi-desc">2× TEMP TABLE ENGINE=MEMORY รวม tray_discrepancies + tray_borrowed + tray_sold_borrowed แล้ว CASE WHEN คำนวณ 9 สถานะ (1,2,3,4,5,7,8,10,13)</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">3-Round Fuzzy Matching</p>
-              <p class="fi-desc">R1: exact/substring · R2: keyword→กลุ่ม→ชื่อเต็ม · R3: ตัดคำนำหน้ากลุ่มเทียบชื่อสาขา · SESSION cache 5 min TTL</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">Shift-Aware Date</p>
-              <p class="fi-desc">CASE WHEN HOUR(start_time) &lt; 7 THEN DATE_SUB(in_date, INTERVAL 1 DAY) ใน KPI และ report_summary</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">Async Fire-and-Forget</p>
-              <p class="fi-desc">cURL CURLOPT_TIMEOUT_MS=2000 + CURLOPT_NOSIGNAL=1 trigger cron_import โดยไม่รอ response</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">ISO Week Cycle</p>
-              <p class="fi-desc">getCycle() = ceil(ISO_WEEK / 4) → 1–13 cycle ต่อปี ใช้ getCycleLabel() group รายการถาดซื้อ/ขาย</p>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- MT -->
-      <article class="project-card" data-p="mt">
-        <div class="pc-stripe"></div>
-        <p class="pc-tag">Laravel 12 · MySQL · Vanilla JS</p>
-        <h3 class="pc-name">MT — ระบบนับสต็อก</h3>
-        <p class="pc-sub">บันทึกสต็อกด้วยบาร์โค้ด รองรับหลายรอบนับ 3 กะ หลายผู้ใช้พร้อมกัน</p>
-        <p class="pc-stack">Laravel 12 · PHP 8 · MySQL · maatwebsite/excel · Vanilla JS · Custom CSS</p>
-
-        <p class="pc-desc">
-          ระบบนับสต็อกสินค้าผ่านการสแกนบาร์โค้ด รองรับการนับหลายรอบแยกตาม 3 กะ
-          บันทึก buffer 3 ประเภท export รายงาน พร้อม supervisor dashboard
-        </p>
-
-        <div class="fblock">
-          <p class="fblock-label">Features</p>
-          <div class="flist">
-            <div class="fi">
-              <p class="fi-name">HandlesBufferScanning</p>
-              <p class="fi-desc">Trait สแกนบาร์โค้ด 4 states — found_in_round, new_item, unknown_barcode, select_product</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">3-Shift Buffer Model</p>
-              <p class="fi-desc">3 ประเภท (Full/Split/Pack) × 3 กะ (morning/afternoon/night) · nextShiftForToday() ตรวจกะล่าสุดจาก 3 model แนะนำกะถัดไปอัตโนมัติ · Supervisor เพิ่มรายการ + export Excel</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">seedRound</p>
-              <p class="fi-desc">copy mat_codes จากรอบก่อนหน้า · bulk INSERT 500 records/batch</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">resolveExpiryDate</p>
-              <p class="fi-desc">priority chain — clear_pay &gt; min(fp1,fp2) &gt; fp1 &gt; fp2 &gt; exp_cr</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">ROW_NUMBER() History</p>
-              <p class="fi-desc">PARTITION BY order_date, po, barcode ORDER BY id DESC — dedup order history</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">product_barcodes Design</p>
-              <p class="fi-desc">mat_code เป็น PK เพราะ 1 barcode มีได้หลาย mat_code → select_product flow</p>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- S -->
-      <article class="project-card" data-p="s">
-        <div class="pc-stripe"></div>
-        <p class="pc-tag">Laravel 12 · MySQL · JsBarcode</p>
-        <h3 class="pc-name">S — ระบบสแกนจัดส่ง + พิมพ์ป้าย</h3>
-        <p class="pc-sub">สแกน EAN-13 รับของเข้า และพิมพ์ป้าย CODE39 พร้อม label template editor</p>
-        <p class="pc-stack">Laravel 12 · PHP 8 · MySQL · JsBarcode · Bootstrap 5 · PhpSpreadsheet · maatwebsite/excel</p>
-
-        <p class="pc-desc">
-          นำเข้าข้อมูลใบส่งของจาก Excel สแกนบาร์โค้ด EAN-13 รับของเข้า
-          และพิมพ์ป้ายสินค้า CODE39 พร้อม label template editor
-          ที่ scale ฟอนต์อัตโนมัติด้วย CSS Container Queries
-        </p>
-
-        <div class="fblock">
-          <p class="fblock-label">Features</p>
-          <div class="flist">
-            <div class="fi">
-              <p class="fi-name">SHA-1 Deduplication</p>
-              <p class="fi-desc">sha1(json_encode($rowData)) ต่อแถว เป็น content_hash · duplicate อัพเดต last_seen_at เท่านั้น</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">Route Filter</p>
-              <p class="fi-desc">ค้นหาคอลัมน์ "สายรถ" โดย scan หาค่า "ไม่ใช่รอบ" จากข้อมูลจริง ไม่ใช่ header text · import เฉพาะแถว routeValue = "ไม่ใช่รอบ"</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">EAN-13 Zero-Pad Fallback</p>
-              <p class="fi-desc">เครื่องสแกนบางรุ่นตัด leading zero (EAN-13 → 12 หลัก) · str_pad(barcode, 13, '0', STR_PAD_LEFT) อัตโนมัติ</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">Dispatch Status Dashboard</p>
-              <p class="fi-desc">GROUP BY name แสดง total vs scanned_count · เรียงจาก unscanned มากสุดก่อน · export XLSX</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">Material Import with Images</p>
-              <p class="fi-desc">PhpSpreadsheet extractImagesByRow — นำเข้า mat_code + name + รูปภาพฝังใน Excel พร้อมกัน</p>
-            </div>
-            <div class="fi">
-              <p class="fi-name">Label Template Editor</p>
-              <p class="fi-desc">field_positions เป็น JSON % (x,y,width,height) · 4 field: mat_code, name, image, barcode · CSS Container Queries (cqh/cqw) scale ฟอนต์อัตโนมัติ</p>
-            </div>
-          </div>
-        </div>
-      </article>
-
+    <div class="sk-cell">
+      <p class="sk-cat">Frontend</p>
+      <div class="sk-tags">
+        <span class="sk-tag">JavaScript</span>
+        <span class="sk-tag">jQuery</span>
+        <span class="sk-tag">Bootstrap 5</span>
+        <span class="sk-tag">HTML / CSS</span>
+      </div>
     </div>
-  </section>
+    <div class="sk-cell">
+      <p class="sk-cat">Libraries</p>
+      <div class="sk-tags">
+        <span class="sk-tag">PhpSpreadsheet</span>
+        <span class="sk-tag">maatwebsite/excel</span>
+        <span class="sk-tag">JsBarcode</span>
+        <span class="sk-tag">HTMLPurifier · ZipArchive</span>
+      </div>
+    </div>
+    <div class="sk-cell">
+      <p class="sk-cat">Database</p>
+      <div class="sk-tags">
+        <span class="sk-tag">Window Functions</span>
+        <span class="sk-tag">TEMP TABLE ENGINE=MEMORY</span>
+        <span class="sk-tag">Stored Procedures</span>
+        <span class="sk-tag">Bulk Insert</span>
+      </div>
+    </div>
+    <div class="sk-cell">
+      <p class="sk-cat">UI Components</p>
+      <div class="sk-tags">
+        <span class="sk-tag">Select2</span>
+        <span class="sk-tag">SortableJS</span>
+      </div>
+    </div>
+    <div class="sk-cell">
+      <p class="sk-cat">Other</p>
+      <div class="sk-tags">
+        <span class="sk-tag">Git · cURL</span>
+        <span class="sk-tag">EAN-13 · CODE39</span>
+        <span class="sk-tag">SHA-1 / MD5 Dedup</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer class="footer" id="contact">
-    <p class="footer-name">นวรินทร์ อนันตวรวงศ์ · Nawarin Anantawarawong</p>
-    <a class="footer-email" href="mailto:navarin.ananta@gmail.com">navarin.ananta@gmail.com</a>
-    <p class="footer-note">Full-Stack Developer · PHP · Laravel · MySQL</p>
-  </footer>
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <p class="sec-kicker">ผลงาน</p>
+  <h2 class="sec-title">Projects</h2>
+  <div class="proj-list">
 
-</div><!-- /w -->
+    <!-- TARD -->
+    <div data-p="tard">
+      <article class="proj-card">
+        <div class="proj-bar"></div>
+        <div class="proj-head">
+          <p class="proj-num">Project 01</p>
+          <h3 class="proj-name">Tard — ระบบจัดการถาด Dutch Mill</h3>
+          <p class="proj-sub">ระบบครบวงจรติดตามถาดพลาสติกรถส่งนม รองรับ 3 บทบาทผู้ใช้งาน (User · Admin · Supervisor)</p>
+          <div class="proj-stack">
+            <span class="ps-tag">PHP 8</span>
+            <span class="ps-tag">MySQL</span>
+            <span class="ps-tag">jQuery</span>
+            <span class="ps-tag">Bootstrap 5</span>
+            <span class="ps-tag">PhpSpreadsheet</span>
+            <span class="ps-tag">Select2</span>
+            <span class="ps-tag">SortableJS</span>
+            <span class="ps-tag">HTMLPurifier</span>
+            <span class="ps-tag">ZipArchive</span>
+          </div>
+        </div>
+        <div class="proj-stats">
+          <div class="pstat"><div class="pstat-val">100+</div><div class="pstat-lbl">PHP Files</div></div>
+          <div class="pstat"><div class="pstat-val">3</div><div class="pstat-lbl">User Roles</div></div>
+          <div class="pstat"><div class="pstat-val">9</div><div class="pstat-lbl">Status States</div></div>
+          <div class="pstat"><div class="pstat-val">13</div><div class="pstat-lbl">Export Types</div></div>
+          <div class="pstat"><div class="pstat-val">5</div><div class="pstat-lbl">Fix Modes</div></div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-desc">
+            บันทึกและติดตามการเคลื่อนที่ของถาดพลาสติกในทุกเที่ยวรถส่งนม
+            วิเคราะห์ประเภทคืนไม่ครบ 4 แบบ รายงาน KPI รายวัน/รายสาย
+            นำเข้าข้อมูลจาก Excel พร้อม rollback ย้อนข้อมูล และออก export 13 รูปแบบ
+          </p>
 
+          <div class="fblock">
+            <p class="fblock-title">บันทึกและค้นหา</p>
+            <div class="fi"><p class="fi-name">กระดานค้นหา</p><p class="fi-desc">12+ filter — สถานะ 9 ค่า, วันที่/เวลา, ทะเบียน, สาย, ปลายทาง, <code>customer_code</code> (พิมพ์ <code>-</code> = ไม่มีรหัส), ผู้บันทึก, <code>tray_id</code> หลายค่า · pagination 2 โหมด: daily-mode / full-search</p></div>
+            <div class="fi"><p class="fi-name">บันทึกรับเข้า</p><p class="fi-desc">หลายคันพร้อมกัน · AJAX <code>fetch_tray</code> + <code>ajax_check</code> ตรวจขาด/เกิน real-time · sub-tray ตลิ่ง (<code>tray_id-N</code>) · hub modal ยืม/ขาย per employee · UPSERT inbound+outbound ใน transaction เดียว</p></div>
+            <div class="fi"><p class="fi-name">แก้ไขย้อนหลัง</p><p class="fi-desc">4 หน้าแยก — <code>edit_record</code>, <code>edit_batch</code>, <code>edit_hub</code>, <code>edit_inbound_group</code></p></div>
+          </div>
+
+          <div class="fblock">
+            <p class="fblock-title">วิเคราะห์ประเภทคืนไม่ครบ</p>
+            <div class="fi"><p class="fi-name">ตรวจสอบขาดเกิน</p><p class="fi-desc">เปรียบเทียบถาดออก vs รับกลับ แสดงส่วนต่างรายเที่ยวรถ</p></div>
+            <div class="fi"><p class="fi-name">ถาดยืม + ประวัติ</p><p class="fi-desc">validation 2 ชั้น — per-tray net AND global pool <code>max(0,−net)</code> ป้องกันคืนเกินยอด · transaction + <code>CALL sp_update_vehicle_status</code></p></div>
+            <div class="fi"><p class="fi-name">ถาดซื้อ/ขาย</p><p class="fi-desc">ISO Week Cycle · <code>verify_clear</code>/<code>undo_clear</code> → <code>CALL sp_update_vehicle_status</code> · edit_doc แก้ doc_no, book_no, po_no</p></div>
+          </div>
+
+          <div class="fblock">
+            <p class="fblock-title">รายงานและ KPI</p>
+            <div class="fi"><p class="fi-name">KPI รับเข้า</p><p class="fi-desc">รายเที่ยวรถ 9-state status · filter: ทะเบียน, วันที่, สถานะ, recorder · แก้ไขกลุ่มได้ผ่าน <code>edit_inbound_group</code></p></div>
+            <div class="fi"><p class="fi-name">สรุปรายวัน / สายรถ</p><p class="fi-desc">KPI รายวันย้อนหลัง · ยอดถาดแยกสายรถตามช่วงเวลา</p></div>
+            <div class="fi"><p class="fi-name">รายงานสรุปยอดถาด</p><p class="fi-desc">ยอดออก-รับ diff ต่อประเภทถาด · group by วัน/เดือน · shift-aware date · dynamic tray columns · grand total</p></div>
+            <div class="fi"><p class="fi-name">Report Builder</p><p class="fi-desc">เลือก column รวม inbound+outbound · auto-arrange คู่ถาด · AJAX live preview</p></div>
+            <div class="fi"><p class="fi-name">Custom Report</p><p class="fi-desc">เลือก field + operator (text/date/time/number) + value สร้าง query ได้เอง</p></div>
+          </div>
+
+          <div class="fblock">
+            <p class="fblock-title">นำเข้าและแก้ไขข้อมูล</p>
+            <div class="fi"><p class="fi-name">Excel Import หลัก</p><p class="fi-desc">ตรวจ column count → <code>cron_import_shared</code> async fire-and-forget → MD5 dedup → active <code>tray_settings</code> dynamic → bulk INSERT 500 แถว/batch · progress tracking</p></div>
+            <div class="fi"><p class="fi-name">JSONL Fix Pipeline</p><p class="fi-desc">upload xlsx → cron <code>staging=1</code> chunked + MD5 dedup → JSONL diff → <code>preview_fix</code> before/after → <code>apply_fix</code> confirm/cancel → snapshot 6 ตารางก่อน apply</p></div>
+            <div class="fi"><p class="fi-name">Upload Fix 5 แบบ</p><p class="fi-desc">ทั่วไป/ตลิ่ง/ศูนย์ — JSONL pipeline · center_adj — PhpSpreadsheet ตรง 4 ประเภท (ยืม/คืนยืม/ขาย/ซื้อ) · rollback — snapshot 3 ประเภท</p></div>
+            <div class="fi"><p class="fi-name">Trash / Restore / ลบถาวร</p><p class="fi-desc">soft delete <code>is_deleted=1</code> · restore · permanent delete cascade 6 ตาราง ใน transaction</p></div>
+          </div>
+
+          <div class="fblock">
+            <p class="fblock-title">Technical Highlights</p>
+            <div class="fi"><p class="fi-name">9-State Status Engine</p><p class="fi-desc">2× <code>TEMP TABLE ENGINE=MEMORY</code> รวม tray_discrepancies + tray_borrowed + tray_sold_borrowed → <code>CASE WHEN</code> คำนวณ 9 สถานะ (1,2,3,4,5,7,8,10,13)</p></div>
+            <div class="fi"><p class="fi-name">3-Round Fuzzy Matching</p><p class="fi-desc">R1: exact/substring · R2: keyword→กลุ่ม→ชื่อเต็ม · R3: ตัดคำนำหน้าเทียบชื่อสาขา · SESSION cache 5 min TTL</p></div>
+            <div class="fi"><p class="fi-name">Shift-Aware Date</p><p class="fi-desc"><code>CASE WHEN HOUR(start_time) &lt; 7 THEN DATE_SUB(in_date, INTERVAL 1 DAY)</code></p></div>
+            <div class="fi"><p class="fi-name">Async Fire-and-Forget</p><p class="fi-desc"><code>cURL</code> — <code>CURLOPT_TIMEOUT_MS=2000</code> + <code>CURLOPT_NOSIGNAL=1</code> trigger cron โดยไม่รอ response</p></div>
+            <div class="fi"><p class="fi-name">ISO Week Cycle</p><p class="fi-desc"><code>getCycle() = ceil(ISO_WEEK / 4)</code> → 1–13 cycle ต่อปี สำหรับ group ถาดซื้อ/ขาย</p></div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- MT -->
+    <div data-p="mt">
+      <article class="proj-card">
+        <div class="proj-bar"></div>
+        <div class="proj-head">
+          <p class="proj-num">Project 02</p>
+          <h3 class="proj-name">MT — ระบบนับสต็อก</h3>
+          <p class="proj-sub">บันทึกสต็อกด้วยบาร์โค้ด รองรับหลายรอบนับ 3 กะ หลายผู้ใช้พร้อมกัน</p>
+          <div class="proj-stack">
+            <span class="ps-tag">Laravel 12</span>
+            <span class="ps-tag">PHP 8</span>
+            <span class="ps-tag">MySQL</span>
+            <span class="ps-tag">maatwebsite/excel</span>
+            <span class="ps-tag">Vanilla JS</span>
+          </div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-desc">ระบบนับสต็อกสินค้าผ่านการสแกนบาร์โค้ด รองรับหลายรอบแยกตาม 3 กะ บันทึก buffer 3 ประเภท export รายงาน พร้อม supervisor dashboard</p>
+          <div class="fblock">
+            <p class="fblock-title">Features</p>
+            <div class="fi"><p class="fi-name">HandlesBufferScanning</p><p class="fi-desc">Trait สแกนบาร์โค้ด 4 states — <code>found_in_round</code>, <code>new_item</code>, <code>unknown_barcode</code>, <code>select_product</code></p></div>
+            <div class="fi"><p class="fi-name">3-Shift Buffer Model</p><p class="fi-desc">3 ประเภท (Full/Split/Pack) × 3 กะ (morning/afternoon/night) · <code>nextShiftForToday()</code> ตรวจกะล่าสุดจาก 3 model แนะนำกะถัดไปอัตโนมัติ</p></div>
+            <div class="fi"><p class="fi-name">seedRound</p><p class="fi-desc">copy mat_codes จากรอบก่อน · bulk INSERT 500 records/batch</p></div>
+            <div class="fi"><p class="fi-name">resolveExpiryDate</p><p class="fi-desc">priority chain — <code>clear_pay &gt; min(fp1,fp2) &gt; fp1 &gt; fp2 &gt; exp_cr</code></p></div>
+            <div class="fi"><p class="fi-name">ROW_NUMBER() History</p><p class="fi-desc"><code>PARTITION BY order_date, po, barcode ORDER BY id DESC</code></p></div>
+            <div class="fi"><p class="fi-name">product_barcodes Design</p><p class="fi-desc">mat_code เป็น PK เพราะ 1 barcode มีได้หลาย mat_code → <code>select_product</code> flow</p></div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- S -->
+    <div data-p="s">
+      <article class="proj-card">
+        <div class="proj-bar"></div>
+        <div class="proj-head">
+          <p class="proj-num">Project 03</p>
+          <h3 class="proj-name">S — ระบบสแกนจัดส่ง + พิมพ์ป้าย</h3>
+          <p class="proj-sub">สแกน EAN-13 รับของเข้า และพิมพ์ป้าย CODE39 พร้อม label template editor</p>
+          <div class="proj-stack">
+            <span class="ps-tag">Laravel 12</span>
+            <span class="ps-tag">PHP 8</span>
+            <span class="ps-tag">MySQL</span>
+            <span class="ps-tag">JsBarcode</span>
+            <span class="ps-tag">Bootstrap 5</span>
+            <span class="ps-tag">PhpSpreadsheet</span>
+          </div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-desc">นำเข้าข้อมูลใบส่งของจาก Excel สแกนบาร์โค้ด EAN-13 รับของเข้า พิมพ์ป้ายสินค้า CODE39 พร้อม label template editor ที่ scale ฟอนต์อัตโนมัติด้วย CSS Container Queries</p>
+          <div class="fblock">
+            <p class="fblock-title">Features</p>
+            <div class="fi"><p class="fi-name">SHA-1 Deduplication</p><p class="fi-desc"><code>sha1(json_encode($rowData))</code> ต่อแถว เป็น content_hash · duplicate อัพเดต <code>last_seen_at</code> เท่านั้น</p></div>
+            <div class="fi"><p class="fi-name">Route Filter</p><p class="fi-desc">ค้นหาคอลัมน์ "สายรถ" โดย scan หาค่า <code>"ไม่ใช่รอบ"</code> จากข้อมูลจริง ไม่ใช่ header text · import เฉพาะแถวที่ match</p></div>
+            <div class="fi"><p class="fi-name">EAN-13 Zero-Pad Fallback</p><p class="fi-desc">เครื่องสแกนบางรุ่นตัด leading zero · <code>str_pad(barcode, 13, '0', STR_PAD_LEFT)</code> อัตโนมัติ</p></div>
+            <div class="fi"><p class="fi-name">Dispatch Status Dashboard</p><p class="fi-desc"><code>GROUP BY name</code> แสดง total vs scanned_count · เรียงจาก unscanned มากสุดก่อน · export XLSX</p></div>
+            <div class="fi"><p class="fi-name">Material Import with Images</p><p class="fi-desc">PhpSpreadsheet <code>extractImagesByRow</code> — นำเข้า mat_code + name + รูปฝังใน Excel พร้อมกัน</p></div>
+            <div class="fi"><p class="fi-name">Label Template Editor</p><p class="fi-desc">field_positions เป็น JSON % (x,y,width,height) · 4 field: mat_code, name, image, barcode · CSS Container Queries scale ฟอนต์อัตโนมัติ</p></div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+  <p class="footer-name">นวรินทร์ อนันตวรวงศ์</p>
+  <a class="footer-email" href="mailto:navarin.ananta@gmail.com">navarin.ananta@gmail.com</a>
+  <p class="footer-note">// Full-Stack Developer · PHP · Laravel · MySQL</p>
+</footer>
+
+</div>
 </body>
 </html>
